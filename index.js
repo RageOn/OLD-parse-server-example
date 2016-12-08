@@ -4,6 +4,7 @@
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
+var ParseDashboard = require('parse-dashboard');
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
@@ -18,6 +19,20 @@ var api = new ParseServer({
   masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
   serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed
 });
+
+var allowInsecureHTTP = false;
+var dashboard = new ParseDashboard({
+    "apps": [
+        {
+            "serverURL": process.env.SERVER_URL,
+            "appId": process.env.APP_ID,
+            "masterKey": process.env.MASTER_KEY,
+            "appName": "RageOn! (Production)"
+        }
+    ],
+    "trustProxy": 1
+}, allowInsecureHTTP);
+
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:
 // javascriptKey, restAPIKey, dotNetKey, clientKey
@@ -26,6 +41,9 @@ var app = express();
 
 // Serve static assets from the /public folder
 app.use('/public', express.static(path.join(__dirname, '/public')));
+
+// make the Parse Dashboard available at /dashboard
+app.use('/dashboard', dashboard);
 
 // Serve the Parse API on the /parse URL prefix
 var mountPath = process.env.PARSE_MOUNT || '/parse';
@@ -49,4 +67,4 @@ httpServer.listen(port, function() {
 });
 
 // This will enable the Live Query real-time server
-ParseServer.createLiveQueryServer(httpServer);
+// ParseServer.createLiveQueryServer(httpServer);
