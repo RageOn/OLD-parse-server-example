@@ -36,7 +36,7 @@ var dashboard = new ParseDashboard({
             "pass": process.env.DASHBOARD_JOSH_PASSWORD
         }
     ],
-    "useEncryptedPasswords": true,
+    "useEncryptedPasswords": false,
     "trustProxy": 1
 }, allowInsecureHTTP);
 
