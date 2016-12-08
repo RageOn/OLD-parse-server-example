@@ -30,6 +30,17 @@ var dashboard = new ParseDashboard({
             "appName": "RageOn! (Production)"
         }
     ],
+    "users": [
+        {
+            "user": "josh",
+            "pass": process.env.DASHBOARD_JOSH_PASSWORD
+        },
+        {
+            "user": "user2",
+            "pass": "pass"
+        }
+    ],
+    "useEncryptedPasswords": true,
     "trustProxy": 1
 }, allowInsecureHTTP);
 
