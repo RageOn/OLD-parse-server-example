@@ -22,7 +22,7 @@ var api = new ParseServer({
     push: {
         ios: {
             pfx: __dirname + '/certs/Parse-Push-Release.p12',
-            passphrase: process.env.PUSH_CERT_PASSWORD, // optional password to your p12/PFX
+            passphrase: "", // optional password to your p12/PFX
             bundleId: 'com.rageon.rageon',
             production: true
         }
