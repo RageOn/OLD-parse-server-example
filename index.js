@@ -42,8 +42,8 @@ var dashboard = new ParseDashboard({
     ],
     "users": [
         {
-            "user": "josh",
-            "pass": process.env.DASHBOARD_JOSH_PASSWORD
+            "user": process.env.DASHBOARD_USERNAME,
+            "pass": process.env.DASHBOARD_PASSWORD
         }
     ],
     "useEncryptedPasswords": false,
