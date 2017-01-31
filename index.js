@@ -21,7 +21,7 @@ var api = new ParseServer({
     allowClientClassCreation: process.env.CLIENT_CLASS_CREATION || false,
     push: {
         ios: {
-            pfx: __dirname + '/certs/Parse-Push-Key.p12',
+            pfx: __dirname + '/certs/Parse-Push-Certs.p12',
             passphrase: "", // optional password to your p12/PFX
             bundleId: 'com.rageon.rageon',
             production: true
