@@ -21,7 +21,7 @@ var api = new ParseServer({
     allowClientClassCreation: process.env.CLIENT_CLASS_CREATION || false,
     push: {
         ios: {
-            pfx: __dirname + '/certs/Parse-Push-Release.p12',
+            pfx: __dirname + '/certs/Parse-Push-Key.p12',
             passphrase: "", // optional password to your p12/PFX
             bundleId: 'com.rageon.rageon',
             production: true
@@ -73,9 +73,9 @@ app.get('/', function (req, res) {
 
 // There will be a test page available on the /test path of your server url
 // Remove this before launching your app
-app.get('/test', function (req, res) {
-    res.sendFile(path.join(__dirname, '/public/test.html'));
-});
+// app.get('/test', function (req, res) {
+//     res.sendFile(path.join(__dirname, '/public/test.html'));
+// });
 
 var port = process.env.PORT || 1337;
 var httpServer = require('http').createServer(app);
